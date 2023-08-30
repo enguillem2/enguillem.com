@@ -7,13 +7,16 @@ bank = APIRouter()
 
 @bank.get('/api/movements')
 async def get_movements():
-    # tasks=await get_all_tasks()
-    # return tasks
-    return {"Hello": "movments"}
+    movements=await get_all_movements()
+    return movements
 
 @bank.post('/api/movement',response_model=Movement)
 async def save_movement(movement:Movement):
     print("dins post")
+    movementFound=await get_one_movement(movement.description,movement.amount,movement.date)
+    if movementFound:
+        raise HTTPException(409,"movement alreay exists")
+
     response= await create_movement(movement.dict())
     print("response:",response)
     if response:
