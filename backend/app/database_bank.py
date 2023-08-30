@@ -14,6 +14,11 @@ async def get_all_movements():
         movements.append(Movement(**document))
     return movements
 
+async def get_one_movement_id(id):
+    movement = await collection.find_one({"_id": ObjectId(id)})
+    print("que passa amb movemnt",movement)
+    return movement
+
 async def get_one_movement(description,amount,date):
     mov = await collection.find_one({'description':description,'amount':amount,'date':date})
     return mov
