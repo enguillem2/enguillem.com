@@ -1,5 +1,6 @@
 from fastapi import FastAPI,HTTPException
 from routes.task import task
+from routes.bank import bank
 from fastapi.middleware.cors import CORSMiddleware
 from decouple import config
 
@@ -28,3 +29,5 @@ def read_root():
 
 
 app.include_router(task)
+app.include_router(bank)
+

@@ -12,6 +12,13 @@ class PyObjectId(ObjectId):
         if not ObjectId.is_valid(v):
             raise ValueError("invalid objectid")
         return str(v)
+    
+class Movement(BaseModel):
+    id: Optional[PyObjectId] = Field(alias="_id")
+    description: str
+    amount: float
+    saldo: float
+    date: str
 
 class Task(BaseModel):
     id: Optional[PyObjectId] = Field(alias="_id")
