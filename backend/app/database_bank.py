@@ -27,3 +27,7 @@ async def create_movement(movement):
     new_movement=await collection.insert_one(movement)
     created_movement = await collection.find_one({'_id':new_movement.inserted_id})
     return created_movement
+
+async def delete_movement(id:str):
+    await collection.delete_one({'_id':ObjectId(id)})
+    return True

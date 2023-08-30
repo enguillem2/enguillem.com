@@ -30,9 +30,15 @@ async def save_movement(movement:Movement):
         return response
     raise HTTPException(400,"something went wront")
 
-@bank.post('/api/test')
-async def test(movement:Movement):
-    return {"Hello": "test"}
+
+
+@bank.delete('/api/movements/{id}')
+async def remove_movement(id:str):
+    print("la IDDDD",id)
+    response = await delete_movement(id)
+    if response:
+        return {f"task {id} deleted {response}"}
+    raise HTTPException(404,f"movment with id {id} not found")
     
     
 
