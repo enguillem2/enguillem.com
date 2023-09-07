@@ -2,10 +2,24 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from app.models import Movement
 
 from bson import ObjectId
+import csv
+import os
 
 client = AsyncIOMotorClient('mongodb://mymongo')
 database = client.bankdatabase
 collection = database.movements
+
+async def read_csv_bank(file):
+    directory = os.getcwd()
+    content=os.listdir("app/")
+    for f in content:
+        print("f: ",f)
+    print("reading file",file,directory)
+    with open(f"app/{file}",newline='\n') as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+        for row in spamreader:
+            # print(', '.join(row))
+            print("row",row)
 
 async def get_all_movements():
     movements=[]

@@ -8,7 +8,8 @@ app = FastAPI()
 
 origins=[
     config('FRONTED_URL'),
-    config('FRONTED_URL2')
+    config('FRONTED_URL2'),
+    config('FRONTED_URL3')
 
 ]
 

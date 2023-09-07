@@ -10,6 +10,14 @@ async def get_movements():
     movements=await get_all_movements()
     return movements
 
+@bank.get('/api/readcsv/{file}')
+async def read_csv(file:str):
+    print("file",file)
+    await read_csv_bank(file)
+    return {"Hello": f"{file}"}
+    
+
+
 @bank.get('/api/movements/{id}',response_model=Movement)
 async def get_movements(id:str):
     movement = await get_one_movement_id(id)
