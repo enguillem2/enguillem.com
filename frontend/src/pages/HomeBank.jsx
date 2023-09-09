@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import axios from "axios"
 import { fetchMovements } from "../api/movements";
+import MovementList from "../components/MovementList";
 
 
 function HomeBank() {
@@ -15,7 +16,7 @@ function HomeBank() {
 
     let contentMovements = <p>No data..</p>;
     if (movements.length>0){
-        contentMovements=<p>hi ha moviments a mostrar</p>
+        contentMovements=<MovementList movements={movements} />
     }else if (firstLoad){
         setFirstLoad(false)
         loadMovements()
